@@ -12,6 +12,8 @@ const feedback = document.getElementById("feedback");
 const stepCount = document.getElementById("stepCount");
 const checkButton = document.getElementById("checkButton");
 const resetButton = document.getElementById("resetButton");
+const teaScene = document.getElementById("teaScene");
+const teaSceneCaption = document.getElementById("teaSceneCaption");
 
 let langkahSaatIni = acakLangkah();
 let sudahDiperiksa = false;
@@ -88,12 +90,16 @@ function pindahkanLangkah(index, arah) {
         langkahSaatIni[index]
     ];
     sudahDiperiksa = false;
+    resetAnimasiTeh();
     stepCount.textContent = `${langkahBenar.length} langkah`;
     tampilkanLangkah();
     aturFeedback("Pindahkan langkah dengan tombol panah.");
 }
 
 function periksaUrutan() {
+    const kesalahanPertama = langkahSaatIni.findIndex((langkah, index) => {
+        return langkah.id !== langkahBenar[index].id;
+    });
     const jumlahBenar = langkahSaatIni.reduce((jumlah, langkah, index) => {
         return jumlah + Number(langkah.id === langkahBenar[index].id);
     }, 0);
@@ -103,18 +109,61 @@ function periksaUrutan() {
     stepCount.textContent = `${jumlahBenar} dari ${langkahBenar.length} tepat`;
 
     if (jumlahBenar === langkahBenar.length) {
+        resetAnimasiTeh();
         aturFeedback("Sempurna! Teh siap dinikmati. ☕", "success");
     } else {
-        aturFeedback(`${jumlahBenar} langkah sudah tepat. Coba susun lagi!`, "error");
+        const langkahSalah = langkahSaatIni[kesalahanPertama];
+        const langkahSeharusnya = langkahBenar[kesalahanPertama];
+        animasikanLangkahPertama(kesalahanPertama, langkahSalah, langkahSeharusnya);
+        aturFeedback(
+            `${jumlahBenar} langkah sudah tepat. Langkah ${kesalahanPertama + 1} seharusnya: ${langkahSeharusnya.text}`,
+            "error"
+        );
     }
 }
 
 function mulaiUlang() {
     langkahSaatIni = acakLangkah();
     sudahDiperiksa = false;
+    resetAnimasiTeh();
     stepCount.textContent = `${langkahBenar.length} langkah`;
     aturFeedback("Pindahkan langkah dengan tombol panah.");
     tampilkanLangkah();
+}
+
+function animasikanLangkahPertama(index, langkahSalah, langkahSeharusnya) {
+    if (!teaScene) {
+        return;
+    }
+
+    teaScene.classList.remove("is-animating");
+    teaScene.removeAttribute("data-step");
+    teaScene.removeAttribute("data-mistake");
+    const keterangan = `Langkah ${index + 1} salah: ${langkahSalah.text} Seharusnya: ${langkahSeharusnya.text}`;
+    teaScene.setAttribute("aria-label", keterangan);
+    if (teaSceneCaption) {
+        teaSceneCaption.textContent = keterangan;
+    }
+
+    requestAnimationFrame(() => {
+        teaScene.dataset.step = langkahSeharusnya.id;
+        teaScene.dataset.mistake = langkahSalah.id;
+        teaScene.classList.add("is-animating");
+    });
+}
+
+function resetAnimasiTeh() {
+    if (!teaScene) {
+        return;
+    }
+
+    teaScene.classList.remove("is-animating");
+    teaScene.removeAttribute("data-step");
+    teaScene.removeAttribute("data-mistake");
+    teaScene.setAttribute("aria-label", "Cangkir teh menunggu untuk diracik");
+    if (teaSceneCaption) {
+        teaSceneCaption.textContent = "Cangkir menunggu untuk diracik.";
+    }
 }
 
 function aturFeedback(pesan, status = "") {

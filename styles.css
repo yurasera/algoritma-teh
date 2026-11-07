@@ -114,6 +114,262 @@ h1 {
     animation: arrive 550ms 80ms ease-out both;
 }
 
+.tea-scene {
+    position: relative;
+    min-height: 180px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    border: 1px solid rgba(36, 53, 47, 0.08);
+    border-radius: 8px;
+    background:
+        radial-gradient(ellipse at 50% 100%, rgba(225, 139, 85, 0.2), transparent 58%),
+        linear-gradient(115deg, #f8eee0, #edf2e8 70%);
+}
+
+.tea-cup {
+    position: absolute;
+    z-index: 1;
+    bottom: 38px;
+    left: calc(50% - 41px);
+    width: 82px;
+    height: 66px;
+    border: 5px solid #fffdf8;
+    border-top: 0;
+    border-radius: 5px 5px 23px 23px;
+    background: #f8f3e8;
+    box-shadow: 0 10px 0 -5px #d4dfd1, 0 14px 18px rgba(36, 53, 47, 0.14);
+    transform-origin: 50% 90%;
+}
+
+.tea-cup::before {
+    position: absolute;
+    top: 10px;
+    right: -24px;
+    width: 18px;
+    height: 23px;
+    border: 5px solid #fffdf8;
+    border-left: 0;
+    border-radius: 0 14px 14px 0;
+    content: "";
+}
+
+.tea-cup::after {
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    width: 62px;
+    height: 11px;
+    border: 4px solid #fffdf8;
+    border-radius: 50%;
+    background: #a5532c;
+    content: "";
+    transform: translateX(-50%);
+}
+
+.tea-liquid {
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    left: 4px;
+    height: 34px;
+    border-radius: 0 0 14px 14px;
+    background: #a5532c;
+}
+
+.tea-kettle {
+    position: absolute;
+    bottom: 74px;
+    left: calc(50% - 144px);
+    width: 60px;
+    height: 40px;
+    border-radius: 45% 45% 40% 40%;
+    background: #c66c3b;
+    box-shadow: inset 0 -5px 0 rgba(132, 67, 38, 0.16);
+}
+
+.tea-kettle::before {
+    position: absolute;
+    top: 10px;
+    left: -18px;
+    width: 23px;
+    height: 13px;
+    border-top: 6px solid #c66c3b;
+    border-radius: 50%;
+    content: "";
+    transform: rotate(-24deg);
+}
+
+.tea-kettle::after {
+    position: absolute;
+    top: 7px;
+    right: -13px;
+    width: 19px;
+    height: 24px;
+    border: 4px solid #c66c3b;
+    border-left: 0;
+    border-radius: 0 14px 14px 0;
+    content: "";
+}
+
+.steam {
+    position: absolute;
+    width: 14px;
+    height: 24px;
+    border-left: 3px solid rgba(109, 123, 113, 0.55);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.steam::after {
+    position: absolute;
+    top: 8px;
+    left: 5px;
+    width: 10px;
+    height: 18px;
+    border-left: 2px solid rgba(109, 123, 113, 0.35);
+    border-radius: 50%;
+    content: "";
+}
+
+.steam-kettle {
+    bottom: 116px;
+    left: calc(50% - 129px);
+}
+
+.steam-cup {
+    bottom: 107px;
+    left: calc(50% - 4px);
+}
+
+.tea-stream {
+    position: absolute;
+    z-index: 2;
+    top: 74px;
+    left: calc(50% - 87px);
+    width: 4px;
+    height: 48px;
+    border-radius: 4px;
+    background: #a5532c;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+}
+
+.tea-bag {
+    position: absolute;
+    z-index: 2;
+    top: 27px;
+    left: calc(50% - 5px);
+    width: 10px;
+    height: 13px;
+    border-radius: 2px;
+    background: #a5532c;
+    opacity: 0;
+}
+
+.tea-bag::before {
+    position: absolute;
+    bottom: 12px;
+    left: 4px;
+    width: 1px;
+    height: 34px;
+    background: #8d7053;
+    content: "";
+}
+
+.sugar-cube {
+    position: absolute;
+    top: 35px;
+    left: calc(50% - 17px);
+    width: 9px;
+    height: 9px;
+    border: 1px solid #e4d9c5;
+    border-radius: 2px;
+    background: #fffdf8;
+    opacity: 0;
+}
+
+.tea-spoon {
+    position: absolute;
+    top: 87px;
+    left: calc(50% + 17px);
+    width: 40px;
+    height: 3px;
+    border-radius: 3px;
+    background: #87928a;
+    opacity: 0;
+    transform-origin: 4px 50%;
+}
+
+.tea-spoon::before {
+    position: absolute;
+    top: -3px;
+    left: -6px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #87928a;
+    content: "";
+}
+
+.tea-scene-caption {
+    margin: 0 4px 16px;
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 800;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.tea-scene.is-animating[data-step="prepare"] .tea-bag {
+    animation: teabag-drop 900ms ease-in-out;
+}
+
+.tea-scene.is-animating[data-step="boil"] .tea-kettle {
+    animation: kettle-boil 800ms ease-in-out;
+}
+
+.tea-scene.is-animating[data-step="boil"] .steam-kettle,
+.tea-scene.is-animating[data-step="serve"] .steam-cup {
+    animation: steam-rise 900ms ease-out;
+}
+
+.tea-scene.is-animating[data-step="pour"] .tea-kettle {
+    animation: kettle-pour 900ms ease-in-out;
+}
+
+.tea-scene.is-animating[data-step="pour"] .tea-stream {
+    animation: pour-stream 900ms ease-in-out;
+}
+
+.tea-scene.is-animating[data-step="pour"] .tea-liquid {
+    animation: fill-tea 900ms ease-in-out;
+}
+
+.tea-scene.is-animating[data-step="steep"] .tea-bag {
+    animation: teabag-steep 1s ease-in-out;
+}
+
+.tea-scene.is-animating[data-step="steep"] .tea-liquid {
+    animation: deepen-tea 1s ease-in-out;
+}
+
+.tea-scene.is-animating[data-step="season"] .sugar-cube {
+    animation: sugar-drop 850ms ease-in;
+}
+
+.tea-scene.is-animating[data-step="season"] .tea-spoon {
+    animation: spoon-stir 850ms ease-in-out;
+}
+
+.tea-scene.is-animating[data-step="serve"] .tea-cup {
+    animation: cup-serve 900ms ease-in-out;
+}
+
+.tea-scene.is-animating[data-mistake="serve"] .tea-cup {
+    animation: cup-serve 900ms ease-in-out;
+}
+
 .panel-heading {
     display: flex;
     align-items: end;
@@ -306,6 +562,196 @@ h1 {
     }
 }
 
+@keyframes teabag-drop {
+    0% {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+
+    20%,
+    75% {
+        opacity: 1;
+    }
+
+    60% {
+        transform: translateY(57px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(49px);
+    }
+}
+
+@keyframes kettle-boil {
+
+    0%,
+    100% {
+        transform: rotate(0);
+    }
+
+    25%,
+    75% {
+        transform: rotate(-5deg);
+    }
+
+    50% {
+        transform: rotate(5deg);
+    }
+}
+
+@keyframes steam-rise {
+    0% {
+        opacity: 0;
+        transform: translateY(8px) scale(0.8);
+    }
+
+    35%,
+    65% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-18px) scale(1.15);
+    }
+}
+
+@keyframes kettle-pour {
+
+    0%,
+    100% {
+        transform: rotate(0);
+    }
+
+    35%,
+    70% {
+        transform: rotate(-24deg);
+    }
+}
+
+@keyframes pour-stream {
+
+    0%,
+    15%,
+    85%,
+    100% {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+
+    25%,
+    75% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+@keyframes fill-tea {
+
+    0%,
+    100% {
+        height: 34px;
+    }
+
+    70% {
+        height: 44px;
+    }
+}
+
+@keyframes teabag-steep {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    10%,
+    90% {
+        opacity: 1;
+    }
+
+    25%,
+    55%,
+    80% {
+        transform: translateY(48px);
+    }
+
+    40%,
+    70% {
+        transform: translateY(30px);
+    }
+}
+
+@keyframes deepen-tea {
+
+    0%,
+    100% {
+        background: #a5532c;
+    }
+
+    50% {
+        background: #753b25;
+    }
+}
+
+@keyframes sugar-drop {
+    0% {
+        opacity: 0;
+        transform: translateY(-8px) rotate(0);
+    }
+
+    20%,
+    75% {
+        opacity: 1;
+    }
+
+    60% {
+        transform: translateY(47px) rotate(95deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(42px) rotate(120deg);
+    }
+}
+
+@keyframes spoon-stir {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: rotate(0);
+    }
+
+    15%,
+    85% {
+        opacity: 1;
+    }
+
+    30%,
+    70% {
+        transform: rotate(24deg);
+    }
+
+    50% {
+        transform: rotate(-24deg);
+    }
+}
+
+@keyframes cup-serve {
+
+    0%,
+    100% {
+        transform: translateX(0) rotate(0);
+    }
+
+    40%,
+    70% {
+        transform: translateX(18px) rotate(5deg);
+    }
+}
+
 @media (max-width: 560px) {
     body {
         padding: 18px 12px 20px;
@@ -355,6 +801,7 @@ h1 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
