@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f1e8">
+    <title>Racik Teh | Urutkan Langkah</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="game.js"></script>
+</head>
+<body>
+    <main class="game-shell">
+        <header class="game-header">
+            <div class="eyebrow">TANTANGAN URUTAN</div>
+            <div class="title-row">
+                <span class="tea-mark" aria-hidden="true">☕</span>
+                <h1>Racik Teh</h1>
+            </div>
+            <p>Susun langkahnya dari awal sampai teh siap dinikmati.</p>
+        </header>
+
+        <section class="game-panel" aria-labelledby="steps-heading">
+            <div class="panel-heading">
+                <div>
+                    <span class="section-kicker">RESEP KLASIK</span>
+                    <h2 id="steps-heading">Urutkan langkah</h2>
+                </div>
+                <div class="step-count" id="stepCount" aria-live="polite">6 langkah</div>
+            </div>
+
+            <ol class="steps-list" id="stepsList" aria-label="Langkah membuat teh"></ol>
+
+            <div class="game-footer">
+                <p class="feedback" id="feedback" aria-live="polite">Pindahkan langkah dengan tombol panah.</p>
+                <div class="actions">
+                    <button class="button button-secondary" id="resetButton" type="button">Acak ulang</button>
+                    <button class="button button-primary" id="checkButton" type="button">Periksa urutan</button>
+                </div>
+            </div>
+        </section>
+
+        <footer class="page-footer">Satu resep sederhana, satu urutan yang tepat.</footer>
+    </main>
+</body>
+</html>
