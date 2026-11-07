@@ -59,6 +59,20 @@ a {
     animation: arrive 450ms ease-out both;
 }
 
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.top-actions {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 8px;
+    margin-left: auto;
+}
+
 .eyebrow,
 .section-kicker {
     color: var(--green);
@@ -471,9 +485,7 @@ h1 {
 
 .game-footer {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 16px;
+    grid-template-columns: minmax(0, 1fr);
     margin-top: 20px;
     padding: 17px 26px;
     border-top: 1px solid var(--line);
@@ -494,11 +506,6 @@ h1 {
 
 .feedback[data-state="error"] {
     color: var(--wrong);
-}
-
-.actions {
-    display: flex;
-    gap: 8px;
 }
 
 .button {
@@ -761,8 +768,41 @@ h1 {
         padding: 27px 2px 19px;
     }
 
+    .header-top {
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 6px;
+    }
+
+    .eyebrow {
+        font-size: 0.65rem;
+        letter-spacing: 0.07em;
+        white-space: nowrap;
+    }
+
+    .top-actions {
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        gap: 4px;
+    }
+
+    .top-actions .button {
+        min-height: 34px;
+        padding: 0 3px;
+        font-size: 0.68rem;
+        white-space: nowrap;
+    }
+
     h1 {
-        font-size: 2.1rem;
+        font-size: 1.75rem;
+    }
+
+    .tea-mark {
+        width: 44px;
+        height: 44px;
+        flex-basis: 44px;
+        border-radius: 14px;
+        font-size: 1.55rem;
     }
 
     .panel-heading {
@@ -784,14 +824,7 @@ h1 {
     }
 
     .game-footer {
-        grid-template-columns: 1fr;
-        gap: 12px;
         padding: 15px 16px;
-    }
-
-    .actions {
-        display: grid;
-        grid-template-columns: 1fr 1.25fr;
     }
 
     .button {
